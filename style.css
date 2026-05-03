@@ -1,23 +1,51 @@
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
   text-align: center;
-  background: #f5f5f5;
+  margin: 0;
+}
+
+.top-bar {
+  padding: 10px;
+  background: #222;
+}
+
+.top-bar button {
+  margin: 5px;
+  padding: 8px 12px;
+  color: white;
+  background: #444;
+  border: none;
 }
 
 header {
-  margin-top: 50px;
+  margin-top: 60px;
+}
+
+h1 {
+  color: #222;
 }
 
 .btn {
   display: inline-block;
-  padding: 15px 25px;
-  background: black;
+  padding: 15px 30px;
+  background: #007BFF;
   color: white;
   text-decoration: none;
+  border-radius: 8px;
   margin-top: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  margin: 10px;
+#quiz-box {
+  margin-top: 40px;
+}
+
+.answer-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 12px;
+  width: 200px;
+  background: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
 }
