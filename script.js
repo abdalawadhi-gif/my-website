@@ -1,19 +1,33 @@
 let lang = localStorage.getItem("lang") || "en";
 
+let score = 0;
+
 const content = {
   en: {
     title: "Welcome to Our Clinic",
     subtitle: "Take a quick health quiz",
     start: "Start Quiz",
     quizTitle: "Health Quiz",
+    resultGood: "You are doing great! Keep it up 💪",
+    resultMid: "You need some improvement ⚠️",
+    resultBad: "You need to take action 🚨",
+    book: "Book Appointment",
     questions: [
       {
         q: "How often do you exercise?",
-        a: ["Daily", "Sometimes", "Never"]
+        a: [
+          { text: "Daily", score: 2 },
+          { text: "Sometimes", score: 1 },
+          { text: "Never", score: 0 }
+        ]
       },
       {
         q: "How much water do you drink?",
-        a: ["Enough", "Not enough", "Very little"]
+        a: [
+          { text: "Enough", score: 2 },
+          { text: "Not enough", score: 1 },
+          { text: "Very little", score: 0 }
+        ]
       }
     ]
   },
@@ -22,14 +36,26 @@ const content = {
     subtitle: "خذ اختبار صحي سريع",
     start: "ابدأ الاختبار",
     quizTitle: "الاختبار الصحي",
+    resultGood: "وضعك ممتاز 👌",
+    resultMid: "تحتاج تحسين ⚠️",
+    resultBad: "تحتاج تدخل 🚨",
+    book: "احجز موعد",
     questions: [
       {
         q: "كم مرة تمارس الرياضة؟",
-        a: ["يومياً", "أحياناً", "أبداً"]
+        a: [
+          { text: "يومياً", score: 2 },
+          { text: "أحياناً", score: 1 },
+          { text: "أبداً", score: 0 }
+        ]
       },
       {
         q: "كم تشرب ماء؟",
-        a: ["كمية كافية", "غير كافية", "قليل جداً"]
+        a: [
+          { text: "كمية كافية", score: 2 },
+          { text: "غير كافية", score: 1 },
+          { text: "قليل جداً", score: 0 }
+        ]
       }
     ]
   }
@@ -41,12 +67,6 @@ function setLang(selected) {
 }
 
 function applyText() {
-  if (document.getElementById("title")) {
-    document.getElementById("title").innerText = content[lang].title;
-    document.getElementById("subtitle").innerText = content[lang].subtitle;
-    document.getElementById("startBtn").innerText = content[lang].start;
-  }
-
   if (document.getElementById("quizTitle")) {
     document.getElementById("quizTitle").innerText = content[lang].quizTitle;
   }
@@ -63,21 +83,35 @@ function loadQuestion() {
 
   q.a.forEach(ans => {
     const btn = document.createElement("button");
-    btn.innerText = ans;
+    btn.innerText = ans.text;
     btn.className = "answer-btn";
-    btn.onclick = () => nextQuestion();
+    btn.onclick = () => selectAnswer(ans.score);
     answersBox.appendChild(btn);
   });
 }
 
-function nextQuestion() {
+function selectAnswer(value) {
+  score += value;
   current++;
+
   if (current < content[lang].questions.length) {
     loadQuestion();
   } else {
-    document.getElementById("quiz-box").innerHTML =
-      "<h3>" + (lang === "ar" ? "شكراً لك!" : "Thank you!") + "</h3>";
+    showResult();
   }
+}
+
+function showResult() {
+  let resultText;
+
+  if (score >= 3) resultText = content[lang].resultGood;
+  else if (score >= 2) resultText = content[lang].resultMid;
+  else resultText = content[lang].resultBad;
+
+  document.getElementById("quiz-box").innerHTML = `
+    <h3>${resultText}</h3>
+    <a href="booking.html" class="btn">${content[lang].book}</a>
+  `;
 }
 
 applyText();
