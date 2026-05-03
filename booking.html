@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h2>Book Appointment</h2>
+
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Your Name" required><br><br>
+    <input type="tel" placeholder="Phone Number" required><br><br>
+    <input type="date" required><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById("msg").innerText = "Request sent!";
+    }
+  </script>
+
+</body>
+</html>
