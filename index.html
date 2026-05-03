@@ -8,14 +8,20 @@
 
 <body>
 
+  <div class="top-bar">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+  </div>
+
   <header>
-    <h1>Welcome to Our Clinic</h1>
-    <p>Take a quick health quiz</p>
+    <h1 id="title">Welcome to Our Clinic</h1>
+    <p id="subtitle">Take a quick health quiz</p>
   </header>
 
   <main>
-    <a href="quiz.html" class="btn">Start Quiz</a>
+    <a href="quiz.html" class="btn" id="startBtn">Start Quiz</a>
   </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
