@@ -8,16 +8,18 @@
 
 <body>
 
-  <h2>Health Quiz</h2>
+  <div class="top-bar">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+  </div>
+
+  <h2 id="quizTitle">Health Quiz</h2>
 
   <div id="quiz-box">
     <p id="question">Loading...</p>
-
-    <button onclick="answer('yes')">Yes</button>
-    <button onclick="answer('no')">No</button>
+    <div id="answers"></div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
