@@ -1,11 +1,22 @@
+/* 🌍 Reset + Fix shifting issue */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* prevents slight horizontal shift */
+}
+
 /* 🌍 Base */
 body {
   margin: 0;
   font-family: "Cairo", sans-serif;
   direction: rtl;
 
-  background: url("bg.png") no-repeat top center;
+  /* 🎨 Fixed background */
+  background-image: url("bg.png");
+  background-repeat: no-repeat;
+  background-position: center top;
   background-size: cover;
+  background-attachment: fixed;
+
   background-color: #f5f5f5;
 }
 
@@ -55,7 +66,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* 🚀 ULTRA PREMIUM BUTTON */
+/* 🚀 ULTRA PREMIUM ORANGE BUTTON */
 .start-btn {
   position: relative;
   display: block;
