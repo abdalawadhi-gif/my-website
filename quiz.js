@@ -1,4 +1,4 @@
-// 🧠 Category scores
+// 🧠 Scores
 let scores = {
   comfortable: 0,
   debt: 0,
@@ -12,36 +12,21 @@ const questions = [
   {
     title: "هل أنت",
     options: [
-      {
-        text: "موظف أو موظف متعثر لاستكمال دراسة أو مرافق زوج/ة",
-        score: { comfortable: 3, debt: 3, struggling: 1 }
-      },
-      {
-        text: "متقاعد أو مقبل على التقاعد",
-        score: { comfortable: 3, debt: 0, struggling: 3 }
-      },
-      {
-        text: "عاطل عن العمل - ربة منزل",
-        score: { comfortable: 4, debt: 4, struggling: 0 }
-      },
-      {
-        text: "طالب",
-        score: { comfortable: 3, debt: 3, struggling: 0 }
-      },
-      {
-        text: "موظف جديد - حديث التعيين",
-        score: { comfortable: 3, debt: 3, struggling: 1 }
-      }
+      { text: "موظف أو موظف متعثر لاستكمال دراسة أو مرافق زوج/ة" },
+      { text: "متقاعد أو مقبل على التقاعد" },
+      { text: "عاطل عن العمل - ربة منزل" },
+      { text: "طالب" },
+      { text: "موظف جديد - حديث التعيين" }
     ]
   },
   {
     title: "ماهي اكثر نقطة تعاني منها؟",
     options: [
-      { text: "أفلس بنص الشهر او بداية الشهر", score: null },
-      { text: "عندي أقساط وديون", score: null },
-      { text: "ضايع، ماعرف شنو اللي أبي", score: null },
-      { text: "أبي اطور وضعي المالي", score: null },
-      { text: "ما ادري وين تختفي فلوسي", score: null }
+      { text: "أفلس بنص الشهر او بداية الشهر", result: "struggling" },
+      { text: "عندي أقساط وديون ومضغوط", result: "debt" },
+      { text: "ضايع، ماعرف شنو اللي أبي", result: "struggling" },
+      { text: "أبي اطور وضعي المالي", result: "comfortable" },
+      { text: "ما ادري وين تختفي فلوسي", result: "struggling" }
     ]
   }
 ];
@@ -59,17 +44,18 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.className = "answer";
     btn.innerText = opt.text;
-    btn.onclick = () => selectAnswer(opt.score);
+    btn.onclick = () => selectAnswer(opt);
+
     answersBox.appendChild(btn);
   });
 }
 
 // ✅ Handle answer
-function selectAnswer(scoreObj) {
-  if (scoreObj) {
-    scores.comfortable += scoreObj.comfortable;
-    scores.debt += scoreObj.debt;
-    scores.struggling += scoreObj.struggling;
+function selectAnswer(option) {
+
+  // 🎯 ONLY Q2 affects scoring
+  if (current === 1 && option.result) {
+    scores[option.result] += 1;
   }
 
   current++;
@@ -81,7 +67,7 @@ function selectAnswer(scoreObj) {
   }
 }
 
-// 🎯 Result
+// 🎯 Result logic
 function finishQuiz() {
   let result;
 
