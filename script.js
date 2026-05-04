@@ -1,7 +1,10 @@
+// 🌍 Language
 let lang = localStorage.getItem("lang") || "en";
 
+// 📊 Score
 let score = 0;
 
+// 📦 Content
 const content = {
   en: {
     title: "Welcome to Our Clinic",
@@ -12,6 +15,7 @@ const content = {
     resultMid: "You need some improvement ⚠️",
     resultBad: "You need to take action 🚨",
     book: "Book Appointment",
+    bookingSuccess: "Booking saved!",
     questions: [
       {
         q: "How often do you exercise?",
@@ -40,6 +44,7 @@ const content = {
     resultMid: "تحتاج تحسين ⚠️",
     resultBad: "تحتاج تدخل 🚨",
     book: "احجز موعد",
+    bookingSuccess: "تم حفظ الحجز!",
     questions: [
       {
         q: "كم مرة تمارس الرياضة؟",
@@ -61,17 +66,26 @@ const content = {
   }
 };
 
+// 🌍 Change language
 function setLang(selected) {
   localStorage.setItem("lang", selected);
   location.reload();
 }
 
+// 📝 Apply text
 function applyText() {
+  if (document.getElementById("title")) {
+    document.getElementById("title").innerText = content[lang].title;
+    document.getElementById("subtitle").innerText = content[lang].subtitle;
+    document.getElementById("startBtn").innerText = content[lang].start;
+  }
+
   if (document.getElementById("quizTitle")) {
     document.getElementById("quizTitle").innerText = content[lang].quizTitle;
   }
 }
 
+// 🔢 Quiz logic
 let current = 0;
 
 function loadQuestion() {
@@ -101,6 +115,7 @@ function selectAnswer(value) {
   }
 }
 
+// 📊 Show result
 function showResult() {
   let resultText;
 
@@ -114,9 +129,32 @@ function showResult() {
   `;
 }
 
+// 🚀 Run quiz
 applyText();
-
 if (document.getElementById("question")) {
   loadQuestion();
 }
-window.open(`https://wa.me/965XXXXXXXX?text=New booking from ${name}`);
+
+// 📅 BOOKING + WHATSAPP (IMPORTANT)
+// Put this in booking.html script OR keep here if shared
+
+function submitBooking(name, phone, date) {
+  // ✅ Show success message
+  document.getElementById("msg").innerText =
+    content[lang].bookingSuccess;
+
+  // 📱 WhatsApp message
+  const message =
+    lang === "ar"
+      ? `حجز جديد:\nالاسم: ${name}\nالهاتف: ${phone}\nالتاريخ: ${date}`
+      : `New booking:\nName: ${name}\nPhone: ${phone}\nDate: ${date}`;
+
+  // ⚠️ PUT YOUR NUMBER HERE (with country code, no +)
+  const clinicNumber = "965XXXXXXXX";
+
+  // 🚀 Open WhatsApp
+  window.open(
+    `https://wa.me/${clinicNumber}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
