@@ -1,51 +1,45 @@
-let current = 0;
-
 // 🧠 Category scores
 let scores = {
-  comfortable: 0,   // باقة المرتاحين
-  debt: 0,          // باقة المديونين
-  struggling: 0     // باقة المتعثرين
+  comfortable: 0,
+  debt: 0,
+  struggling: 0
 };
 
-// 🧾 Question 1 ONLY (with scoring)
-const questions = [
-  {
-    title: "هل أنت",
-    options: [
-      {
-        text: "موظف أو موظف متعثر لاستكمال دراسة أو مرافق زوج/ة",
-        score: { comfortable: 3, debt: 3, struggling: 1 }
-      },
-      {
-        text: "متقاعد أو مقبل على التقاعد",
-        score: { comfortable: 3, debt: 0, struggling: 3 }
-      },
-      {
-        text: "عاطل عن العمل - ربة منزل",
-        score: { comfortable: 4, debt: 4, struggling: 0 }
-      },
-      {
-        text: "طالب",
-        score: { comfortable: 3, debt: 3, struggling: 0 }
-      },
-      {
-        text: "موظف جديد - حديث التعيين",
-        score: { comfortable: 3, debt: 3, struggling: 1 }
-      }
-    ]
-  }
-];
+// 🧾 Question 1 (with scoring)
+const question = {
+  title: "هل أنت",
+  options: [
+    {
+      text: "موظف أو موظف متعثر لاستكمال دراسة أو مرافق زوج/ة",
+      score: { comfortable: 3, debt: 3, struggling: 1 }
+    },
+    {
+      text: "متقاعد أو مقبل على التقاعد",
+      score: { comfortable: 3, debt: 0, struggling: 3 }
+    },
+    {
+      text: "عاطل عن العمل - ربة منزل",
+      score: { comfortable: 4, debt: 4, struggling: 0 }
+    },
+    {
+      text: "طالب",
+      score: { comfortable: 3, debt: 3, struggling: 0 }
+    },
+    {
+      text: "موظف جديد - حديث التعيين",
+      score: { comfortable: 3, debt: 3, struggling: 1 }
+    }
+  ]
+};
 
 // 🚀 Load question
 function loadQuestion() {
-  const q = questions[current];
-
-  document.getElementById("question-title").innerText = q.title;
+  document.getElementById("question-title").innerText = question.title;
 
   const answersBox = document.getElementById("answers");
   answersBox.innerHTML = "";
 
-  q.options.forEach(opt => {
+  question.options.forEach(opt => {
     const btn = document.createElement("button");
     btn.className = "answer";
     btn.innerText = opt.text;
@@ -58,7 +52,6 @@ function loadQuestion() {
 
 // ✅ Handle answer
 function selectAnswer(scoreObj) {
-  // add scores
   scores.comfortable += scoreObj.comfortable;
   scores.debt += scoreObj.debt;
   scores.struggling += scoreObj.struggling;
@@ -66,23 +59,86 @@ function selectAnswer(scoreObj) {
   finishQuiz();
 }
 
-// 🏁 Determine result
+// 🎯 Determine result
 function finishQuiz() {
   let result;
 
   if (scores.comfortable >= scores.debt && scores.comfortable >= scores.struggling) {
-    result = "باقة المرتاحين";
+    result = "comfortable";
   } else if (scores.debt >= scores.struggling) {
-    result = "باقة المديونين";
+    result = "debt";
   } else {
-    result = "باقة المتعثرين";
+    result = "struggling";
   }
 
-  document.querySelector(".quiz-container").innerHTML = `
-    <h2>نتيجتك:</h2>
-    <h3>${result}</h3>
-    <a href="booking.html" class="start-btn">احجز الآن</a>
-  `;
+  showResult(result);
+}
+
+// 📄 Show result page
+function showResult(type) {
+  let content = "";
+
+  // 🟢 Comfortable
+  if (type === "comfortable") {
+    content = `
+    <h2>نوع الباقة التي تناسبك هي: باقة المرتاحين</h2>
+    <p>لان حسب وضعك فانت ما تحتاج دورة عامة، انت تحتاج استشارة فردية عشان صج تستفيد</p>
+
+    <h3>لمن هذه الباقة؟</h3>
+    <ul>
+      <li>وضعك المالي مستقر</li>
+      <li>لا تعاني من ضغط الديون</li>
+      <li>تريد تطوير ثروتك</li>
+    </ul>
+
+    <h3>السعر:</h3>
+    <p>199 دك أو 49.750 / 4 دفعات</p>
+
+    <a href="https://wa.me/96522260820?text=مرحبا، خلصت الاستبيان وطلعت نتيجتي باقة المرتاحين وأبي أحجز استشارة" class="start-btn">
+      احجز عبر واتساب
+    </a>
+    `;
+  }
+
+  // 🔴 Debt
+  if (type === "debt") {
+    content = `
+    <h2>نوع الباقة التي تناسبك هي: باقة المديونين</h2>
+    <p>هذه الباقة تساعدك تسيطر على ديونك</p>
+
+    <h3>لمن هذه الباقة؟</h3>
+    <ul>
+      <li>عندك قروض أو أقساط</li>
+      <li>تشعر بضغط مالي</li>
+      <li>تريد تنظيم وضعك</li>
+    </ul>
+
+    <a href="https://wa.me/96522260820?text=مرحبا، خلصت الاستبيان وطلعت نتيجتي باقة المديونين وأبي أبدأ العلاج المالي" class="start-btn">
+      احجز عبر واتساب
+    </a>
+    `;
+  }
+
+  // 🟡 Struggling
+  if (type === "struggling") {
+    content = `
+    <h2>نوع الباقة التي تناسبك هي: باقة المتعثرين</h2>
+    <p>هذه الباقة لإعادة بناء وضعك المالي من الصفر</p>
+
+    <h3>لمن هذه الباقة؟</h3>
+    <ul>
+      <li>تعاني من ضغط مالي قوي</li>
+      <li>راتبك يختفي بسرعة</li>
+      <li>تحتاج خطة واضحة</li>
+    </ul>
+
+    <a href="https://wa.me/96522260820?text=مرحبا، خلصت الاستبيان وطلعت نتيجتي باقة المتعثرين وأحتاج مساعدة عاجلة" class="start-btn">
+      احجز عبر واتساب
+    </a>
+    `;
+  }
+
+  document.querySelector(".quiz-container").innerHTML = content;
 }
 
 // Start
