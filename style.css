@@ -4,13 +4,13 @@ body {
   font-family: "Cairo", sans-serif;
   direction: rtl;
 
-  /* ✅ Full background */
+  /* 🎨 Full background */
   background: url("bg.png") no-repeat top center;
   background-size: cover;
   background-color: #f5f5f5;
 }
 
-/* 📦 Container */
+/* 📦 Main container */
 .quiz-container {
   max-width: 700px;
   margin: 120px auto 40px;
@@ -23,7 +23,7 @@ body {
 }
 
 /* 🧠 Question */
-.question-title {
+#question-title {
   font-size: 26px;
   margin-bottom: 10px;
 }
@@ -55,12 +55,12 @@ body {
   background: #e0ecff;
 }
 
-/* 🎯 Button */
+/* 🎯 Main button */
 .start-btn {
   display: block;
   width: 100%;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 15px;
 
   background: #4a8bdc;
@@ -68,4 +68,67 @@ body {
   text-decoration: none;
   border-radius: 10px;
   font-size: 18px;
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background: #2f6fc2;
+}
+
+/* 📄 Result styling */
+h2 {
+  margin-bottom: 15px;
+  font-size: 26px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* 📋 Lists */
+ul {
+  padding-right: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* 📦 Sections */
+.section {
+  margin-top: 25px;
+}
+
+/* ✨ Highlight text */
+.highlight {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* 💰 Price */
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4a8bdc;
+}
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .quiz-container {
+    margin: 100px 15px;
+    padding: 20px;
+  }
+
+  #question-title {
+    font-size: 22px;
+  }
+
+  .answer {
+    font-size: 14px;
+  }
 }
