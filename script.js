@@ -119,3 +119,4 @@ applyText();
 if (document.getElementById("question")) {
   loadQuestion();
 }
+window.open(`https://wa.me/965XXXXXXXX?text=New booking from ${name}`);
