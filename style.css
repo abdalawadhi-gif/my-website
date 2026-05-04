@@ -1,51 +1,99 @@
+/* 🌍 Base */
 body {
   margin: 0;
   font-family: "Cairo", sans-serif;
-  background: #f2f2f2;
   direction: rtl;
+  background-color: #f5f5f5;
 }
 
-.container {
+/* 🎨 Top patterned background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+
+  background: url("bg.png") repeat-x;
+  background-size: contain;
+
+  z-index: -1;
+}
+
+/* 📦 Main container */
+.quiz-container {
   max-width: 700px;
-  margin: 60px auto;
-  padding: 20px;
+  margin: 120px auto 40px;
+  padding: 25px;
+
+  background: white;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* 🧠 Question */
+.question-title {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.question-sub {
+  color: #999;
+  margin-bottom: 25px;
+}
+
+/* 🧾 Answers */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.answer {
+  padding: 18px;
+  background: #eef3f9;
+  border: 2px solid #5b9cff;
+  border-radius: 12px;
   text-align: right;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 30px;
+.answer:hover {
+  background: #e0ecff;
 }
 
-.intro {
-  font-weight: bold;
-}
-
-p {
-  line-height: 1.8;
-  margin-bottom: 15px;
-}
-
-.brand {
-  margin-top: 30px;
-  font-weight: bold;
-}
-
+/* 🎯 Button (result page) */
 .start-btn {
   display: block;
-  width: 200px;
+  width: 100%;
   text-align: center;
-  margin: 40px auto;
+  margin-top: 20px;
   padding: 15px;
+
   background: #4a8bdc;
   color: white;
   text-decoration: none;
   border-radius: 10px;
   font-size: 18px;
-  transition: 0.3s;
 }
 
-.start-btn:hover {
-  background: #2f6fc2;
+/* 📄 Result text */
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+ul {
+  padding-right: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
 }
