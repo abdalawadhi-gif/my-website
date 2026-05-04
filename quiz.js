@@ -1,11 +1,10 @@
-// 🧠 Category scores (ONLY Q1 affects this)
+// 🧠 Category scores
 let scores = {
   comfortable: 0,
   debt: 0,
   struggling: 0
 };
 
-// 📊 Track question step
 let current = 0;
 
 // 🧾 Questions
@@ -60,17 +59,13 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.className = "answer";
     btn.innerText = opt.text;
-
     btn.onclick = () => selectAnswer(opt.score);
-
     answersBox.appendChild(btn);
   });
 }
 
 // ✅ Handle answer
 function selectAnswer(scoreObj) {
-
-  // 🧠 ONLY first question affects score
   if (scoreObj) {
     scores.comfortable += scoreObj.comfortable;
     scores.debt += scoreObj.debt;
@@ -80,9 +75,9 @@ function selectAnswer(scoreObj) {
   current++;
 
   if (current < questions.length) {
-    loadQuestion(); // 👉 go to next question
+    loadQuestion();
   } else {
-    finishQuiz(); // 👉 after last question
+    finishQuiz();
   }
 }
 
@@ -101,28 +96,102 @@ function finishQuiz() {
   showResult(result);
 }
 
-// 📄 Show result
+// 📄 PROFESSIONAL RESULT PAGE
 function showResult(type) {
   let content = "";
 
+  // 🟢 المرتاحين
   if (type === "comfortable") {
     content = `
-    <h2>باقة المرتاحين</h2>
-    <a href="https://wa.me/96522260820" class="start-btn">احجز الآن</a>
+    <h2>💎 باقة المرتاحين</h2>
+    <p class="highlight">هذه الباقة مناسبة لك لأنك مستقر مالياً وتحتاج تطوير ذكي</p>
+
+    <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
+      <ul>
+        <li>وضعك المالي مستقر</li>
+        <li>لا تعاني من ديون</li>
+        <li>تريد تطوير ثروتك</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+      <ul>
+        <li>تنظيم كامل للميزانية</li>
+        <li>استراتيجيات إدارة الأصول</li>
+        <li>تنويع مصادر الدخل</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>💰 السعر</h3>
+      <p class="price">199 دك أو 49.750 / 4 دفعات</p>
+    </div>
+
+    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المرتاحين" class="start-btn">
+      احجز الآن عبر واتساب
+    </a>
     `;
   }
 
+  // 🔴 المديونين
   if (type === "debt") {
     content = `
-    <h2>باقة المديونين</h2>
-    <a href="https://wa.me/96522260820" class="start-btn">احجز الآن</a>
+    <h2>🚨 باقة المديونين</h2>
+    <p class="highlight">هذه الباقة تساعدك تسيطر على ديونك وتستعيد راحتك</p>
+
+    <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
+      <ul>
+        <li>عندك قروض أو أقساط</li>
+        <li>تشعر بضغط مالي</li>
+        <li>تريد تنظيم حياتك</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+      <ul>
+        <li>خطة إدارة ديون</li>
+        <li>تنظيم المصاريف</li>
+        <li>تحقيق راحة مالية</li>
+      </ul>
+    </div>
+
+    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المديونين" class="start-btn">
+      احجز الآن عبر واتساب
+    </a>
     `;
   }
 
+  // 🟡 المتعثرين
   if (type === "struggling") {
     content = `
-    <h2>باقة المتعثرين</h2>
-    <a href="https://wa.me/96522260820" class="start-btn">احجز الآن</a>
+    <h2>🔥 باقة المتعثرين</h2>
+    <p class="highlight">هذه الباقة تعيد بناء وضعك المالي من الصفر</p>
+
+    <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
+      <ul>
+        <li>ضغط مالي شديد</li>
+        <li>راتبك يختفي بسرعة</li>
+        <li>تشعر بعدم السيطرة</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+      <ul>
+        <li>تشخيص كامل للوضع</li>
+        <li>خطة علاج مالي</li>
+        <li>إعادة تنظيم حياتك المالية</li>
+      </ul>
+    </div>
+
+    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المتعثرين" class="start-btn">
+      احجز الآن عبر واتساب
+    </a>
     `;
   }
 
