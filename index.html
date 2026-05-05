@@ -2,34 +2,34 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>كاش ناس | Cash Nas</title>
+  <title>Cash Clinic</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="container">
+  <!-- 🧾 CARD CONTAINER -->
+  <div class="quiz-container intro-card">
 
-    <h1 class="title">
-      خطوات للبدء بالعلاج المالي (كاش ناس)
-    </h1>
+    <h1 class="main-title">خطوات للبدء بالعلاج المالي (كاش ناس)</h1>
 
-    <p class="intro">مرحباً بك،</p>
+    <p>مرحباً بك،</p>
 
     <p>
-      أول خطوة للعلاج المالي هو التشخيص ليتم حل المشكلة من عرجها بدلاً من ترقيعها بحلول ترقيعية مؤقتة
+      أول خطوة للعلاج المالي هو التشخيص ليتم حل المشكلة من جذرها بدلاً من ترقيعها
+      بحلول ترقيعية مؤقتة
     </p>
 
     <p>
-      هذا استبيان قصير وسريع مخصص لقياس ناس المختص بتنظيم الميزانيات الشخصية وإدارة الديون والأصول
+      هذا استبيان قصير وسريع مخصص لقياس ناس المختص بتنظيم الميزانيات الشخصية
+      وإدارة الديون والأصول
     </p>
 
     <p>
-      هدفنا من هذه الأسئلة هو فهم وضعك المالي الحالي بشكل أدق، حتى نتمكن من توجيهك إلى الحل الأنسب لظروفك
+      هدفنا من هذه الأسئلة هو فهم وضعك المالي الحالي بشكل أدق،
+      حتى نتمكن من توجيهك إلى الحل الأنسب لظروفك
     </p>
 
     <p>
@@ -38,9 +38,15 @@
 
     <p class="brand">Cash Nas | Cash Clinic</p>
 
-    <a href="quiz.html" class="start-btn">ابدأ</a>
+    <button class="start-btn" onclick="startQuiz()">ابدأ</button>
 
   </div>
+
+  <script>
+    function startQuiz() {
+      window.location.href = "quiz.html";
+    }
+  </script>
 
 </body>
 </html>
