@@ -18,15 +18,25 @@ body {
   background-color: #f5f5f5;
 }
 
+/* 🛡️ PREVENT IMAGE BREAKING */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* 🟠 HEADER */
 .header {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 20px 40px;
 }
 
+/* ✅ CONTROLLED LOGO SIZE */
 .header-logo {
-  width: 70px;
+  width: 65px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* 🧾 HERO */
@@ -47,7 +57,7 @@ body {
 /* 📦 CARD */
 .quiz-container {
   max-width: 700px;
-  margin: 30px auto 100px; /* space for footer */
+  margin: 30px auto 100px;
   padding: 30px;
 
   background: white;
@@ -160,5 +170,9 @@ body {
   .quiz-container {
     margin: 20px 15px 100px;
     padding: 20px;
+  }
+
+  .answer {
+    font-size: 14px;
   }
 }
