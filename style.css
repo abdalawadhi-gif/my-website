@@ -199,3 +199,30 @@ ul li {
   color: #888;
   font-size: 14px;
 }
+/* 🟠 Logo inside card */
+.logo-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 90px;
+  height: auto;
+}
+
+/* 🧾 Intro page */
+.intro-card {
+  text-align: right;
+}
+
+.main-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.brand {
+  margin-top: 20px;
+  color: #888;
+  font-size: 14px;
+}
