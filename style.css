@@ -32,7 +32,6 @@ img {
   padding: 20px 40px;
 }
 
-/* ✅ CONTROLLED LOGO SIZE */
 .header-logo {
   width: 65px;
   height: auto;
@@ -102,13 +101,13 @@ img {
   background: #eef3ff;
 }
 
-/* 🚀 BUTTON */
+/* 🚀 BUTTON (UPDATED 🔥) */
 .start-btn {
   display: block;
-  width: 80%;                 /* 🔥 wider */
-  margin: 30px auto 0;        /* 🔥 centered */
+  width: 80%;                 /* centered width */
+  margin: 30px auto 0;        /* center horizontally */
 
-  padding: 18px;              /* 🔥 bigger height */
+  padding: 18px;              /* bigger */
 
   background: #ff7a00;
   color: white;
@@ -125,10 +124,46 @@ img {
   transition: 0.2s ease;
 }
 
-/* Hover */
 .start-btn:hover {
   background: #e66d00;
   transform: translateY(-2px);
+}
+
+/* 📄 RESULT */
+h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+/* 📋 LIST */
+ul {
+  padding-right: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* 📦 SECTIONS */
+.section {
+  margin-top: 25px;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #333;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff7a00;
 }
 
 /* 🔻 FOOTER */
@@ -183,5 +218,9 @@ img {
 
   .answer {
     font-size: 14px;
+  }
+
+  .start-btn {
+    width: 100%; /* full width on mobile */
   }
 }
