@@ -1,4 +1,4 @@
-/* 🌍 RESET */
+/* 🌍 Reset */
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -18,36 +18,10 @@ body {
   background-color: #f5f5f5;
 }
 
-/* 🟠 HEADER */
-.header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 40px;
-}
-
-.header-logo {
-  width: 70px;
-}
-
-/* 🧾 HERO */
-.hero {
-  text-align: center;
-  padding: 40px 20px 10px;
-}
-
-.hero-title {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.hero-sub {
-  color: #666;
-}
-
-/* 📦 CARD */
+/* 📦 Main Card */
 .quiz-container {
-  max-width: 650px;
-  margin: 30px auto 40px;
+  max-width: 700px;
+  margin: 120px auto 40px;
   padding: 30px;
 
   background: white;
@@ -56,7 +30,38 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* 🧠 QUESTION */
+/* 🟠 Logo (PROFESSIONAL SIZE) */
+.logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 85px;         /* ✅ balanced size */
+  height: auto;
+  opacity: 0.95;       /* subtle premium touch */
+}
+
+/* 🧾 Intro Page */
+.intro-card {
+  text-align: right;
+}
+
+.main-title {
+  font-size: 26px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.brand {
+  margin-top: 20px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* 🧠 Question */
 #question-title {
   font-size: 24px;
   margin-bottom: 10px;
@@ -64,71 +69,59 @@ body {
 
 .question-sub {
   color: #999;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-/* 🧾 ANSWERS (FIXED + PREMIUM) */
+/* 🧾 Answers */
 .answers {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 20px;
 }
 
 .answer {
-  width: 100%;
   padding: 18px;
-
   background: #f3f6fb;
-  border: 2px solid #e1e7f5;
-
+  border: 2px solid #dce6f7;
   border-radius: 12px;
   text-align: right;
   font-size: 15px;
-
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-/* Hover */
 .answer:hover {
   background: #eaf1ff;
   border-color: #bcd0ff;
   transform: translateY(-2px);
 }
 
-/* ✅ SELECTED STATE */
-.answer.selected {
-  background: #dce8ff;
-  border-color: #5b9cff;
-  box-shadow: 0 5px 15px rgba(91, 156, 255, 0.2);
-}
-
-/* 🚀 BUTTON */
+/* 🚀 ULTRA PREMIUM BUTTON */
 .start-btn {
   position: relative;
   display: block;
   width: 100%;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
   padding: 16px;
 
   background: linear-gradient(135deg, #ff8c00, #ff5e00);
   color: white;
-  border: none;
-  border-radius: 14px;
+  text-decoration: none;
 
+  border-radius: 14px;
   font-size: 18px;
   font-weight: bold;
 
-  box-shadow: 0 10px 25px rgba(255,120,0,0.35);
-  cursor: pointer;
+  box-shadow:
+    0 10px 25px rgba(255, 120, 0, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.25);
 
   transition: all 0.3s ease;
   overflow: hidden;
 }
 
-/* Shine */
+/* ✨ Shine */
 .start-btn::before {
   content: "";
   position: absolute;
@@ -154,7 +147,8 @@ body {
 /* Hover */
 .start-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(255,120,0,0.45);
+  box-shadow:
+    0 15px 35px rgba(255, 120, 0, 0.45);
 }
 
 /* Click */
@@ -162,7 +156,7 @@ body {
   transform: scale(0.97);
 }
 
-/* 📄 RESULT */
+/* 📄 Result */
 h2 {
   margin-bottom: 15px;
   font-size: 24px;
@@ -173,7 +167,7 @@ h3 {
   font-size: 17px;
 }
 
-/* 📋 LIST */
+/* 📋 Lists */
 ul {
   padding-right: 20px;
 }
@@ -183,80 +177,38 @@ ul li {
   line-height: 1.6;
 }
 
-/* 📦 SECTIONS */
+/* 📦 Sections */
 .section {
   margin-top: 25px;
 }
 
+/* ✨ Highlight */
 .highlight {
   font-weight: bold;
   color: #333;
+  margin-bottom: 12px;
 }
 
+/* 💰 Price */
 .price {
   font-size: 20px;
   font-weight: bold;
   color: #ff7a00;
 }
 
-/* ⭐ TRUST SECTION */
-.trust-section {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.trust-title {
-  font-size: 22px;
-  margin-bottom: 25px;
-}
-
-.testimonials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-}
-
-.testimonial {
-  background: white;
-  padding: 15px 20px;
-  border-radius: 12px;
-  max-width: 250px;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  font-size: 14px;
-}
-
-.contact-box {
-  margin-top: 30px;
-  font-size: 14px;
-}
-
-.contact-box a {
-  color: #ff7a00;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.contact-box p {
-  margin: 8px 0;
-}
-
-/* 📱 MOBILE */
+/* 📱 Mobile */
 @media (max-width: 600px) {
-  .header {
-    padding: 15px 20px;
-  }
-
-  .hero-title {
-    font-size: 22px;
-  }
-
   .quiz-container {
-    margin: 20px 15px;
+    margin: 100px 15px;
     padding: 20px;
+  }
+
+  .logo {
+    width: 70px;
+  }
+
+  #question-title {
+    font-size: 20px;
   }
 
   .answer {
