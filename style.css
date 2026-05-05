@@ -1,16 +1,14 @@
-/* 🌍 Reset + Fix shifting issue */
+/* 🌍 Reset */
 html, body {
   width: 100%;
-  overflow-x: hidden; /* prevents slight horizontal shift */
+  overflow-x: hidden;
 }
 
-/* 🌍 Base */
 body {
   margin: 0;
   font-family: "Cairo", sans-serif;
   direction: rtl;
 
-  /* 🎨 Fixed background */
   background-image: url("bg.png");
   background-repeat: no-repeat;
   background-position: center top;
@@ -20,11 +18,11 @@ body {
   background-color: #f5f5f5;
 }
 
-/* 📦 Container */
+/* 📦 Main Card */
 .quiz-container {
   max-width: 700px;
   margin: 120px auto 40px;
-  padding: 25px;
+  padding: 30px;
 
   background: white;
   border-radius: 18px;
@@ -32,9 +30,40 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
+/* 🟠 Logo (PROFESSIONAL SIZE) */
+.logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 85px;         /* ✅ balanced size */
+  height: auto;
+  opacity: 0.95;       /* subtle premium touch */
+}
+
+/* 🧾 Intro Page */
+.intro-card {
+  text-align: right;
+}
+
+.main-title {
+  font-size: 26px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.brand {
+  margin-top: 20px;
+  color: #888;
+  font-size: 14px;
+}
+
 /* 🧠 Question */
 #question-title {
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
@@ -52,46 +81,47 @@ body {
 
 .answer {
   padding: 18px;
-  background: #eef3f9;
-  border: 2px solid #5b9cff;
+  background: #f3f6fb;
+  border: 2px solid #dce6f7;
   border-radius: 12px;
   text-align: right;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .answer:hover {
-  background: #e0ecff;
+  background: #eaf1ff;
+  border-color: #bcd0ff;
   transform: translateY(-2px);
 }
 
-/* 🚀 ULTRA PREMIUM ORANGE BUTTON */
+/* 🚀 ULTRA PREMIUM BUTTON */
 .start-btn {
   position: relative;
   display: block;
   width: 100%;
   text-align: center;
   margin-top: 30px;
-  padding: 18px;
+  padding: 16px;
 
   background: linear-gradient(135deg, #ff8c00, #ff5e00);
   color: white;
   text-decoration: none;
 
   border-radius: 14px;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: bold;
 
   box-shadow:
-    0 10px 30px rgba(255, 120, 0, 0.4),
-    inset 0 1px 0 rgba(255,255,255,0.3);
+    0 10px 25px rgba(255, 120, 0, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.25);
 
   transition: all 0.3s ease;
   overflow: hidden;
 }
 
-/* ✨ Shine effect */
+/* ✨ Shine */
 .start-btn::before {
   content: "";
   position: absolute;
@@ -103,41 +133,38 @@ body {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.4),
+    rgba(255,255,255,0.35),
     transparent
   );
 
   transition: 0.6s;
 }
 
-/* Hover animation */
 .start-btn:hover::before {
   left: 100%;
 }
 
-/* Hover lift */
+/* Hover */
 .start-btn:hover {
-  transform: translateY(-3px) scale(1.01);
+  transform: translateY(-2px);
   box-shadow:
-    0 15px 40px rgba(255, 120, 0, 0.5),
-    inset 0 1px 0 rgba(255,255,255,0.4);
+    0 15px 35px rgba(255, 120, 0, 0.45);
 }
 
-/* Click effect */
+/* Click */
 .start-btn:active {
   transform: scale(0.97);
-  box-shadow: 0 5px 15px rgba(255, 120, 0, 0.3);
 }
 
-/* 📄 Result styling */
+/* 📄 Result */
 h2 {
   margin-bottom: 15px;
-  font-size: 26px;
+  font-size: 24px;
 }
 
 h3 {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 /* 📋 Lists */
@@ -159,7 +186,7 @@ ul li {
 .highlight {
   font-weight: bold;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 /* 💰 Price */
@@ -176,53 +203,15 @@ ul li {
     padding: 20px;
   }
 
+  .logo {
+    width: 70px;
+  }
+
   #question-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .answer {
     font-size: 14px;
   }
-}
-/* 🧾 Intro page */
-.intro-card {
-  text-align: right;
-}
-
-.main-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.brand {
-  margin-top: 20px;
-  color: #888;
-  font-size: 14px;
-}
-/* 🟠 Logo inside card */
-.logo-box {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  width: 90px;
-  height: auto;
-}
-
-/* 🧾 Intro page */
-.intro-card {
-  text-align: right;
-}
-
-.main-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.brand {
-  margin-top: 20px;
-  color: #888;
-  font-size: 14px;
 }
