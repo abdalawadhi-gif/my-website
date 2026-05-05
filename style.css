@@ -1,4 +1,4 @@
-/* 🌍 Reset */
+/* 🌍 RESET */
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -27,7 +27,6 @@ body {
 
 .header-logo {
   width: 70px;
-  height: auto;
 }
 
 /* 🧾 HERO */
@@ -43,7 +42,6 @@ body {
 
 .hero-sub {
   color: #666;
-  font-size: 16px;
 }
 
 /* 📦 CARD */
@@ -58,14 +56,52 @@ body {
   box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* 🧾 Text */
-.intro-card {
-  text-align: right;
+/* 🧠 QUESTION */
+#question-title {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.intro-card p {
-  margin-bottom: 12px;
-  line-height: 1.7;
+.question-sub {
+  color: #999;
+  margin-bottom: 20px;
+}
+
+/* 🧾 ANSWERS (FIXED + PREMIUM) */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.answer {
+  width: 100%;
+  padding: 18px;
+
+  background: #f3f6fb;
+  border: 2px solid #e1e7f5;
+
+  border-radius: 12px;
+  text-align: right;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.answer:hover {
+  background: #eaf1ff;
+  border-color: #bcd0ff;
+  transform: translateY(-2px);
+}
+
+/* ✅ SELECTED STATE */
+.answer.selected {
+  background: #dce8ff;
+  border-color: #5b9cff;
+  box-shadow: 0 5px 15px rgba(91, 156, 255, 0.2);
 }
 
 /* 🚀 BUTTON */
@@ -89,15 +125,126 @@ body {
   cursor: pointer;
 
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-/* ✨ Hover */
+/* Shine */
+.start-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+
+  transition: 0.6s;
+}
+
+.start-btn:hover::before {
+  left: 100%;
+}
+
+/* Hover */
 .start-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 15px 35px rgba(255,120,0,0.45);
 }
 
-/* 📱 Mobile */
+/* Click */
+.start-btn:active {
+  transform: scale(0.97);
+}
+
+/* 📄 RESULT */
+h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+/* 📋 LIST */
+ul {
+  padding-right: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* 📦 SECTIONS */
+.section {
+  margin-top: 25px;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #333;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff7a00;
+}
+
+/* ⭐ TRUST SECTION */
+.trust-section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.trust-title {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.testimonial {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  max-width: 250px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+
+.contact-box {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.contact-box a {
+  color: #ff7a00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-box p {
+  margin: 8px 0;
+}
+
+/* 📱 MOBILE */
 @media (max-width: 600px) {
   .header {
     padding: 15px 20px;
@@ -110,5 +257,9 @@ body {
   .quiz-container {
     margin: 20px 15px;
     padding: 20px;
+  }
+
+  .answer {
+    font-size: 14px;
   }
 }
