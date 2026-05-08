@@ -1,3 +1,5 @@
+import { db, collection, addDoc } from "./firebase.js";
+
 // 🧠 Scores
 let scores = {
   comfortable: 0,
@@ -19,170 +21,211 @@ const questions = [
       { text: "موظف جديد - حديث التعيين" }
     ]
   },
+
   {
     title: "ماهي اكثر نقطة تعاني منها؟",
     options: [
-      { text: "أفلس بنص الشهر او بداية الشهر", result: "struggling" },
-      { text: "عندي أقساط وديون ومضغوط", result: "debt" },
-      { text: "ضايع، ماعرف شنو اللي أبي", result: "struggling" },
-      { text: "أبي اطور وضعي المالي", result: "comfortable" },
-      { text: "ما ادري وين تختفي فلوسي", result: "struggling" }
+      {
+        text: "أفلس بنص الشهر او بداية الشهر",
+        result: "struggling"
+      },
+
+      {
+        text: "عندي أقساط وديون ومضغوط",
+        result: "debt"
+      },
+
+      {
+        text: "ضايع، ماعرف شنو اللي أبي",
+        result: "struggling"
+      },
+
+      {
+        text: "أبي اطور وضعي المالي",
+        result: "comfortable"
+      },
+
+      {
+        text: "ما ادري وين تختفي فلوسي",
+        result: "struggling"
+      }
     ]
   }
 ];
 
-// 🚀 Load question
+// 🚀 Load Question
 function loadQuestion() {
+
   const q = questions[current];
 
   document.getElementById("question-title").innerText = q.title;
 
   const answersBox = document.getElementById("answers");
+
   answersBox.innerHTML = "";
 
   q.options.forEach(opt => {
+
     const btn = document.createElement("button");
+
     btn.className = "answer";
+
     btn.innerText = opt.text;
+
     btn.onclick = () => selectAnswer(opt);
 
     answersBox.appendChild(btn);
+
   });
 }
 
-// ✅ Handle answer
+// ✅ Handle Answer
 function selectAnswer(option) {
 
-  // 🎯 ONLY Q2 affects scoring
+  // 🎯 Only Q2 affects result
   if (current === 1 && option.result) {
+
     scores[option.result] += 1;
+
   }
 
   current++;
 
   if (current < questions.length) {
+
     loadQuestion();
+
   } else {
+
     finishQuiz();
+
   }
 }
 
-// 🎯 Result logic
-function finishQuiz() {
+// 🎯 Finish Quiz
+async function finishQuiz() {
+
   let result;
-
-  if (scores.comfortable >= scores.debt && scores.comfortable >= scores.struggling) {
-    result = "comfortable";
-  } else if (scores.debt >= scores.struggling) {
-    result = "debt";
-  } else {
-    result = "struggling";
-  }
-
-  showResult(result);
-}
-
-// 📄 PROFESSIONAL RESULT PAGE
-function showResult(type) {
-  let content = "";
+  let resultDescription;
 
   // 🟢 المرتاحين
-  if (type === "comfortable") {
-    content = `
-    <h2>💎 باقة المرتاحين</h2>
-    <p class="highlight">هذه الباقة مناسبة لك لأنك مستقر مالياً وتحتاج تطوير ذكي</p>
+  if (
+    scores.comfortable >= scores.debt &&
+    scores.comfortable >= scores.struggling
+  ) {
 
-    <div class="section">
-      <h3>🎯 لمن هذه الباقة؟</h3>
-      <ul>
-        <li>وضعك المالي مستقر</li>
-        <li>لا تعاني من ديون</li>
-        <li>تريد تطوير ثروتك</li>
-      </ul>
-    </div>
+    result = "💎 باقة المرتاحين";
 
-    <div class="section">
-      <h3>🚀 ماذا ستحصل؟</h3>
-      <ul>
-        <li>تنظيم كامل للميزانية</li>
-        <li>استراتيجيات إدارة الأصول</li>
-        <li>تنويع مصادر الدخل</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h3>💰 السعر</h3>
-      <p class="price">199 دك أو 49.750 / 4 دفعات</p>
-    </div>
-
-    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المرتاحين" class="start-btn">
-      احجز الآن عبر واتساب
-    </a>
+    resultDescription = `
+      هذه الباقة مناسبة لك لأن وضعك المالي مستقر
+      وتحتاج تطوير وإدارة ذكية للأصول والميزانية.
     `;
+
   }
 
   // 🔴 المديونين
-  if (type === "debt") {
-    content = `
-    <h2>🚨 باقة المديونين</h2>
-    <p class="highlight">هذه الباقة تساعدك تسيطر على ديونك وتستعيد راحتك</p>
+  else if (scores.debt >= scores.struggling) {
 
-    <div class="section">
-      <h3>🎯 لمن هذه الباقة؟</h3>
-      <ul>
-        <li>عندك قروض أو أقساط</li>
-        <li>تشعر بضغط مالي</li>
-        <li>تريد تنظيم حياتك</li>
-      </ul>
-    </div>
+    result = "🚨 باقة المديونين";
 
-    <div class="section">
-      <h3>🚀 ماذا ستحصل؟</h3>
-      <ul>
-        <li>خطة إدارة ديون</li>
-        <li>تنظيم المصاريف</li>
-        <li>تحقيق راحة مالية</li>
-      </ul>
-    </div>
-
-    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المديونين" class="start-btn">
-      احجز الآن عبر واتساب
-    </a>
+    resultDescription = `
+      تحتاج إلى خطة واضحة لإدارة الديون
+      والسيطرة على الالتزامات المالية براحة أكبر.
     `;
+
   }
 
   // 🟡 المتعثرين
-  if (type === "struggling") {
-    content = `
-    <h2>🔥 باقة المتعثرين</h2>
-    <p class="highlight">هذه الباقة تعيد بناء وضعك المالي من الصفر</p>
+  else {
 
-    <div class="section">
-      <h3>🎯 لمن هذه الباقة؟</h3>
-      <ul>
-        <li>ضغط مالي شديد</li>
-        <li>راتبك يختفي بسرعة</li>
-        <li>تشعر بعدم السيطرة</li>
-      </ul>
-    </div>
+    result = "🔥 باقة المتعثرين";
 
-    <div class="section">
-      <h3>🚀 ماذا ستحصل؟</h3>
-      <ul>
-        <li>تشخيص كامل للوضع</li>
-        <li>خطة علاج مالي</li>
-        <li>إعادة تنظيم حياتك المالية</li>
-      </ul>
-    </div>
-
-    <a href="https://wa.me/96522260820?text=أبي أحجز باقة المتعثرين" class="start-btn">
-      احجز الآن عبر واتساب
-    </a>
+    resultDescription = `
+      تحتاج إلى إعادة ترتيب الوضع المالي بالكامل
+      وبناء خطة علاج مالي واضحة من الصفر.
     `;
+
   }
 
-  document.querySelector(".quiz-container").innerHTML = content;
+  // 👤 Get User Data
+  const userData = {
+
+    name: localStorage.getItem("user_name"),
+
+    email: localStorage.getItem("user_email"),
+
+    whatsapp: localStorage.getItem("user_whatsapp"),
+
+    country: localStorage.getItem("user_country"),
+
+    result: result,
+
+    createdAt: new Date()
+
+  };
+
+  // 🔥 Save To Firebase
+  try {
+
+    await addDoc(collection(db, "leads"), userData);
+
+    console.log("✅ Lead Saved!");
+
+  } catch (error) {
+
+    console.error("❌ Firebase Error:", error);
+
+  }
+
+  // 📱 WhatsApp Message
+  const whatsappMessage = `
+مرحباً كاش كلينك 👋
+
+لقد أكملت التشخيص المالي
+
+النتيجة:
+${result}
+
+الاسم:
+${userData.name}
+
+رقم الواتساب:
+${userData.whatsapp}
+
+الدولة:
+${userData.country}
+`;
+
+  // 📄 Show Result
+  document.querySelector(".quiz-container").innerHTML = `
+
+    <h2>${result}</h2>
+
+    <p class="highlight">
+      ${resultDescription}
+    </p>
+
+    <div class="section">
+
+      <h3>✅ تم تسجيل بياناتك بنجاح</h3>
+
+      <p>
+        يمكنك الآن التواصل مع فريق كاش كلينك
+        لاستكمال التشخيص والخطة المالية.
+      </p>
+
+    </div>
+
+    <a
+      href="https://wa.me/96522260820?text=${encodeURIComponent(whatsappMessage)}"
+      class="start-btn"
+      target="_blank"
+    >
+      التواصل عبر واتساب
+    </a>
+
+  `;
 }
 
-// Start
+// 🚀 Start
 loadQuestion();
