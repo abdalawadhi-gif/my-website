@@ -32,23 +32,89 @@
 
     <p>لا توجد إجابات صحيحة أو خاطئة — فقط أجب بصدق</p>
 
-    <button class="start-btn" onclick="startQuiz()">ابدأ الآن</button>
+    <!-- 🔥 LEAD FORM -->
+    <div class="lead-form">
+
+      <input type="text" id="name" placeholder="الاسم الكامل">
+
+      <input type="email" id="email" placeholder="البريد الإلكتروني">
+
+      <input type="tel" id="whatsapp" placeholder="رقم الواتساب">
+
+      <select id="country">
+        <option value="">اختر الدولة</option>
+        <option>الكويت</option>
+        <option>السعودية</option>
+        <option>الإمارات</option>
+        <option>قطر</option>
+        <option>البحرين</option>
+        <option>عمان</option>
+        <option>مصر</option>
+        <option>أخرى</option>
+      </select>
+
+    </div>
+
+    <!-- 🚀 BUTTON -->
+    <button class="start-btn" onclick="startQuiz()">
+      ابدأ الآن
+    </button>
 
   </div>
 
   <!-- 🔻 FOOTER -->
   <footer class="footer">
     <div class="footer-content">
-      <span>💬 <a href="https://wa.me/96522260820" target="_blank">+965 22260820</a></span>
+
+      <span>
+        💬
+        <a href="https://wa.me/96522260820" target="_blank">
+          +965 22260820
+        </a>
+      </span>
+
       <span class="divider">|</span>
-      <span>📸 <a href="https://instagram.com/cashclinic" target="_blank">@cashclinic</a></span>
+
+      <span>
+        📸
+        <a href="https://instagram.com/cashclinic" target="_blank">
+          @cashclinic
+        </a>
+      </span>
+
       <span class="divider">|</span>
-      <span>🌐 <a href="https://cashclinic.net" target="_blank">cashclinic.net</a></span>
+
+      <span>
+        🌐
+        <a href="https://cashclinic.net" target="_blank">
+          cashclinic.net
+        </a>
+      </span>
+
     </div>
   </footer>
 
   <script>
     function startQuiz() {
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const country = document.getElementById("country").value;
+
+      // ✅ VALIDATION
+      if (!name || !email || !whatsapp || !country) {
+        alert("الرجاء تعبئة جميع البيانات");
+        return;
+      }
+
+      // ✅ SAVE LOCALLY
+      localStorage.setItem("user_name", name);
+      localStorage.setItem("user_email", email);
+      localStorage.setItem("user_whatsapp", whatsapp);
+      localStorage.setItem("user_country", country);
+
+      // 🚀 START QUIZ
       window.location.href = "quiz.html";
     }
   </script>
