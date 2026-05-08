@@ -1,5 +1,6 @@
 /* 🌍 RESET */
-html, body {
+html,
+body {
   width: 100%;
   overflow-x: hidden;
 }
@@ -47,10 +48,12 @@ img {
 .hero-title {
   font-size: 28px;
   margin-bottom: 10px;
+  color: #222;
 }
 
 .hero-sub {
   color: #666;
+  font-size: 16px;
 }
 
 /* 📦 CARD */
@@ -62,12 +65,17 @@ img {
   background: white;
   border-radius: 18px;
 
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* 🧾 TEXT */
+/* 🧾 INTRO TEXT */
 .intro-card p {
-  /* 🔥 LEAD FORM */
+  margin-bottom: 12px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* 🔥 LEAD FORM */
 .lead-form {
   margin-top: 25px;
 }
@@ -86,27 +94,28 @@ img {
 
   box-sizing: border-box;
   background: white;
+
+  transition: 0.2s ease;
 }
 
-/* Focus */
+/* ✨ Focus */
 .lead-form input:focus,
 .lead-form select:focus {
   outline: none;
   border-color: #ff7a00;
-  box-shadow: 0 0 0 3px rgba(255,122,0,0.1);
-}
-  margin-bottom: 12px;
-  line-height: 1.7;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
 }
 
 /* 🧠 QUESTION */
 #question-title {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #222;
 }
 
 .question-sub {
   color: #999;
+  margin-bottom: 20px;
 }
 
 /* 🧾 ANSWERS */
@@ -119,39 +128,52 @@ img {
 
 .answer {
   padding: 16px;
+
   background: #f5f7fb;
   border: 1px solid #e2e6ef;
   border-radius: 10px;
+
+  text-align: right;
+  font-size: 15px;
+  font-family: "Cairo", sans-serif;
+
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .answer:hover {
   background: #eef3ff;
+  border-color: #d0d9ea;
 }
 
-/* 🚀 BUTTON (UPDATED 🔥) */
+/* 🚀 BUTTON */
 .start-btn {
   display: block;
-  width: 80%;                 /* centered width */
-  margin: 30px auto 0;        /* center horizontally */
+  width: 80%;
+  margin: 30px auto 0;
 
-  padding: 18px;              /* bigger */
+  padding: 18px;
 
   background: #ff7a00;
   color: white;
+
   border: none;
   border-radius: 14px;
 
   font-size: 18px;
   font-weight: bold;
+  font-family: "Cairo", sans-serif;
 
   text-align: center;
+  text-decoration: none;
+
   cursor: pointer;
 
   box-shadow: 0 10px 25px rgba(255, 120, 0, 0.3);
   transition: 0.2s ease;
 }
 
+/* ✨ Hover */
 .start-btn:hover {
   background: #e66d00;
   transform: translateY(-2px);
@@ -161,14 +183,16 @@ img {
 h2 {
   margin-bottom: 15px;
   font-size: 24px;
+  color: #222;
 }
 
 h3 {
   margin-top: 20px;
   font-size: 17px;
+  color: #222;
 }
 
-/* 📋 LIST */
+/* 📋 LISTS */
 ul {
   padding-right: 20px;
 }
@@ -186,6 +210,7 @@ ul li {
 .highlight {
   font-weight: bold;
   color: #333;
+  line-height: 1.7;
 }
 
 .price {
@@ -200,7 +225,7 @@ ul li {
   bottom: 0;
   width: 100%;
 
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
 
   border-top: 1px solid #eee;
@@ -217,6 +242,8 @@ ul li {
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  flex-wrap: wrap;
 }
 
 .footer a {
@@ -235,8 +262,16 @@ ul li {
     padding: 15px 20px;
   }
 
+  .header-logo {
+    width: 55px;
+  }
+
   .hero-title {
     font-size: 22px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
   }
 
   .quiz-container {
@@ -249,6 +284,16 @@ ul li {
   }
 
   .start-btn {
-    width: 100%; /* full width on mobile */
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .footer-content {
+    gap: 6px;
   }
 }
