@@ -161,12 +161,38 @@ async function finishQuiz() {
 
   }
 
+  // 📱 WhatsApp Message
+  const whatsappMessage = `
+مرحباً كاش كلينك 👋
+
+لقد أكملت التشخيص المالي
+
+━━━━━━━━━━━━━━
+
+📌 النتيجة:
+${result}
+
+👤 الاسم:
+${userData.name}
+
+📧 البريد الإلكتروني:
+${userData.email}
+
+📱 رقم الواتساب:
+${userData.whatsapp}
+
+🌍 الدولة:
+${userData.country}
+
+━━━━━━━━━━━━━━
+`;
+
   // 📄 Show Result
-  showResult(result);
+  showResult(result, whatsappMessage);
 }
 
 // 📄 PROFESSIONAL RESULT PAGE
-function showResult(result) {
+function showResult(result, whatsappMessage) {
 
   let content = "";
 
@@ -211,7 +237,7 @@ function showResult(result) {
     </div>
 
     <a
-      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المرتاحين"
+      href="https://wa.me/96522260820?text=${encodeURIComponent(whatsappMessage)}"
       class="start-btn"
       target="_blank"
     >
@@ -262,7 +288,7 @@ function showResult(result) {
     </div>
 
     <a
-      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المديونين"
+      href="https://wa.me/96522260820?text=${encodeURIComponent(whatsappMessage)}"
       class="start-btn"
       target="_blank"
     >
@@ -313,7 +339,7 @@ function showResult(result) {
     </div>
 
     <a
-      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المتعثرين"
+      href="https://wa.me/96522260820?text=${encodeURIComponent(whatsappMessage)}"
       class="start-btn"
       target="_blank"
     >
