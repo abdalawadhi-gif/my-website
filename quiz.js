@@ -106,7 +106,6 @@ function selectAnswer(option) {
 async function finishQuiz() {
 
   let result;
-  let resultDescription;
 
   // 🟢 المرتاحين
   if (
@@ -116,22 +115,12 @@ async function finishQuiz() {
 
     result = "💎 باقة المرتاحين";
 
-    resultDescription = `
-      هذه الباقة مناسبة لك لأن وضعك المالي مستقر
-      وتحتاج تطوير وإدارة ذكية للأصول والميزانية.
-    `;
-
   }
 
   // 🔴 المديونين
   else if (scores.debt >= scores.struggling) {
 
     result = "🚨 باقة المديونين";
-
-    resultDescription = `
-      تحتاج إلى خطة واضحة لإدارة الديون
-      والسيطرة على الالتزامات المالية براحة أكبر.
-    `;
 
   }
 
@@ -140,14 +129,9 @@ async function finishQuiz() {
 
     result = "🔥 باقة المتعثرين";
 
-    resultDescription = `
-      تحتاج إلى إعادة ترتيب الوضع المالي بالكامل
-      وبناء خطة علاج مالي واضحة من الصفر.
-    `;
-
   }
 
-  // 👤 Get User Data
+  // 👤 User Data
   const userData = {
 
     name: localStorage.getItem("user_name"),
@@ -177,54 +161,169 @@ async function finishQuiz() {
 
   }
 
-  // 📱 WhatsApp Message
-  const whatsappMessage = `
-مرحباً كاش كلينك 👋
-
-لقد أكملت التشخيص المالي
-
-النتيجة:
-${result}
-
-الاسم:
-${userData.name}
-
-رقم الواتساب:
-${userData.whatsapp}
-
-الدولة:
-${userData.country}
-`;
-
   // 📄 Show Result
-  document.querySelector(".quiz-container").innerHTML = `
+  showResult(result);
+}
 
-    <h2>${result}</h2>
+// 📄 PROFESSIONAL RESULT PAGE
+function showResult(result) {
+
+  let content = "";
+
+  // 🟢 المرتاحين
+  if (result.includes("المرتاحين")) {
+
+    content = `
+
+    <h2>💎 باقة المرتاحين</h2>
 
     <p class="highlight">
-      ${resultDescription}
+      هذه الباقة مناسبة لك لأنك مستقر مالياً وتحتاج تطوير ذكي
     </p>
 
     <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
 
-      <h3>✅ تم تسجيل بياناتك بنجاح</h3>
+      <ul>
+        <li>وضعك المالي مستقر</li>
+        <li>لا تعاني من ضغط الديون</li>
+        <li>تريد حماية وتطوير ثروتك</li>
+      </ul>
+    </div>
 
-      <p>
-        يمكنك الآن التواصل مع فريق كاش كلينك
-        لاستكمال التشخيص والخطة المالية.
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+
+      <ul>
+        <li>تنظيم الميزانية الشخصية</li>
+        <li>استراتيجيات إدارة الأصول</li>
+        <li>تنويع مصادر الدخل</li>
+        <li>تحقيق استقرار مالي طويل المدى</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>💰 السعر</h3>
+
+      <p class="price">
+        199 دك أو 49.750 / 4 دفعات
       </p>
-
     </div>
 
     <a
-      href="https://wa.me/96522260820?text=${encodeURIComponent(whatsappMessage)}"
+      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المرتاحين"
       class="start-btn"
       target="_blank"
     >
       التواصل عبر واتساب
     </a>
 
-  `;
+    `;
+  }
+
+  // 🔴 المديونين
+  else if (result.includes("المديونين")) {
+
+    content = `
+
+    <h2>🚨 باقة المديونين</h2>
+
+    <p class="highlight">
+      هذه الباقة تساعدك تسيطر على ديونك وتستعيد راحتك
+    </p>
+
+    <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
+
+      <ul>
+        <li>عندك قروض أو أقساط</li>
+        <li>تشعر بضغط مالي</li>
+        <li>تريد تنظيم حياتك المالية</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+
+      <ul>
+        <li>خطة عملية لإدارة الديون</li>
+        <li>تنظيم المصروفات</li>
+        <li>إدارة التدفق النقدي</li>
+        <li>تقليل الضغط المالي</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>💰 السعر</h3>
+
+      <p class="price">
+        تواصل معنا لمعرفة تفاصيل الباقة
+      </p>
+    </div>
+
+    <a
+      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المديونين"
+      class="start-btn"
+      target="_blank"
+    >
+      التواصل عبر واتساب
+    </a>
+
+    `;
+  }
+
+  // 🟡 المتعثرين
+  else {
+
+    content = `
+
+    <h2>🔥 باقة المتعثرين</h2>
+
+    <p class="highlight">
+      هذه الباقة تعيد بناء وضعك المالي من الصفر
+    </p>
+
+    <div class="section">
+      <h3>🎯 لمن هذه الباقة؟</h3>
+
+      <ul>
+        <li>تعاني من ضغط مالي شديد</li>
+        <li>راتبك يختفي بسرعة</li>
+        <li>تشعر بعدم السيطرة على أموالك</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🚀 ماذا ستحصل؟</h3>
+
+      <ul>
+        <li>تشخيص كامل للوضع المالي</li>
+        <li>خطة علاج مالي واضحة</li>
+        <li>إعادة ترتيب الالتزامات</li>
+        <li>خطة سداد وتنظيم راتب</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>💰 السعر</h3>
+
+      <p class="price">
+        تواصل معنا لمعرفة تفاصيل الباقة
+      </p>
+    </div>
+
+    <a
+      href="https://wa.me/96522260820?text=مرحباً، خلصت الاستبيان وطلع عندي باقة المتعثرين"
+      class="start-btn"
+      target="_blank"
+    >
+      التواصل عبر واتساب
+    </a>
+
+    `;
+  }
+
+  document.querySelector(".quiz-container").innerHTML = content;
 }
 
 // 🚀 Start
